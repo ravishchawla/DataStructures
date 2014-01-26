@@ -1,0 +1,80 @@
+Linear Search
+	Start at first element: visit next element, etc. 
+		o(n)
+		contains method
+		for loop
+
+Binary Search
+	Sorted List
+
+	//SEARCH FOR 11
+	1	3	4	4	5	10	11	15
+	^			^				^
+	|			|				|
+       (lo)		       (mid)			       (hi)
+
+		1) comptue element in the middle of lo and hi
+		2) compare to middle element
+			(since 11 > 4), the searching list becomes:
+				4	5	10	11	15, //where 4 is lo and 15 is still hi
+		3) if the element search for is greater than the middle, than set lo to middle. 
+			else if element is lower than middle, than set hi to middle. 
+
+		4) now we have a new middle, (in this case, 10), repeat. 
+
+
+	Write time: o(log(n))
+		
+	works on monotonic functions (functions which do not change their direction in their graph) (so won't work with quadratic functions)
+
+
+	public double sqrt(double x){
+
+		if (x < 0)
+		{
+			return -1;
+		}
+
+		double lo = 0;
+		double hi = x+1;
+		double mid = -1;
+
+		for (int i = 0; i < 100; i++)
+		{
+			mid = lo + (hi - lo)/2;
+
+			if (mid * mid < x){
+				lo = mid;
+			}
+
+			else{
+				hi - mid;
+			}
+		}
+
+		return mid;
+	}
+
+
+
+	
+
+
+
+
+Ternary Search	
+	-works with convex functions (such as parabolas)
+
+	writing time is also o(log-base 3 of n) coool....
+
+
+
+Splay Trees: 
+	splay: bring a node to the top. 
+	find(n): splay(n)
+	add(n): splay(n)
+	remove(n): splay(n.parent)
+
+	three methods to do these: zig-zig, zig-zag, zig. look at diagrams to see how they done. 
+
+	

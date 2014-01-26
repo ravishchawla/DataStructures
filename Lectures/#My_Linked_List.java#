@@ -1,0 +1,141 @@
+public class My_Linked_List{
+	
+	private Node head = null;
+	private Node tail = null;
+
+
+	public My_Linked_List(){
+
+	head = new Node(9999);
+	tail = new Node(-9999);
+	
+	head.next = tail;
+	tail.prev = head;
+
+
+	}
+
+
+	/**
+	*@param dis - data value
+	*make a new Node
+	*connect that node back to head, forward to head.next
+	*connect next node back to newNode
+	*connec ptrev node (head.next) to newNode
+	**/
+	public void addToHead(int dis)
+	{
+		
+		Node newNode = new Node(dis);
+
+		newNode.next = head.next;
+		newNode.prev = head;
+
+		newNode.next.prev = newNode;
+		head.next = newNode;
+
+
+		
+
+	     
+
+	}
+
+	/**
+	*@param dis - data value;
+	*make a new Node
+	*connect that node back to tail_prev, forward to tail
+	*connect tail node prev to newNode
+	*connect tail.prev.next node newNode
+	**/
+	public void addToTail(int dis)
+	{
+		Node newNode = new Node(dis);
+		newNode.next = tail;
+		newNode.prev = tail.prev;
+		newNode.prev.next = newNode;
+		tail.prev = newNode;
+
+	
+
+	}
+	
+
+	
+	/**
+	 * @param dat the data for the node
+	 * start at head phantom
+	 * while (not off end) && (dat > data in node)
+	 * 	progress down list
+	 * end
+	 * insert new node here
+	 **/
+
+	public void addInOrder(int dat)
+	{
+	Node tmp, newNode = new Node(dat);
+	
+	for (tmp = head; tmp.next.next != null && tmp.next.data < dat; tmp = tmp.next)
+	{
+	}
+
+	newNode.next = tmp.next;
+	newNode.prev = tmp;
+	newNode.next.prev = newNode;
+	tmp.next = newNode;
+
+	}
+	
+
+	public String toString()
+	{
+		String res = "[";
+		Node here = head.next;
+		while (here.next != null){
+			res += here + "\t";
+			here = here.next;
+		}
+
+		return res + "]";
+	}
+
+
+
+private class Node{
+	public int data = 1;
+	public Node next = null;
+	public Node prev = null;
+
+	public Node (int dat)
+	{
+		data = dat;
+		next = null;
+		prev = null;
+	}
+
+	public String toString()
+	{
+		return "" + data;
+	}
+
+}
+public static void main(String[] args){
+	
+	My_Linked_List lala = new My_Linked_List();
+
+	lala.addToHead(20);
+	lala.addToHead(10);
+	lala.addToTail(50);
+
+	System.out.println(lala);
+	lala.addInOrder(30);
+	lala.addInOrder(5);
+	lala.addInOrder(60);
+	
+	System.out.println(lala);
+	System.out.println("Done!");
+
+
+}
+
+}
